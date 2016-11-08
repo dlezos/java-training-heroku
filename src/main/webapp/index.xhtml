@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <head>
+        <title>Who wants to be a Millionaire?</title>
+    </head>
+    <body>
+        <h1>Who wants to be a Millionaire?</h1>
+
+        <h:form prependId="false">
+	        <p>Name: <h:inputText name="name" id="name" value="#{gameFlowBean.name}"/></p>
+            <p><h:commandButton id="start" value="Start Game" action="#{gameFlowBean.startGame}"/></p>
+        </h:form>
+    </body>
+</html>

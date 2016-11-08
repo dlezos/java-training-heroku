@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <head>
+        <title>Show Question</title>
+    </head>
+    <body bgcolor="white">
+        <h:form prependId="false">
+            <h1>Show Question</h1>
+            <p>Are you ready #{gameFlowBean.name}?</p>
+            <p>Question: #{gameFlowBean.question}</p>
+            <h:dataTable value="#{gameFlowBean.answers}" var="answer">
+                <h:column>#{gameFlowBean.answers.indexOf(answer)+1}</h:column>
+                <h:column>#{answer}</h:column>
+            </h:dataTable>
+
+            <p><span id="param1FromFlow1">#{flowScope.param1Value}</span></p>
+            <p><span id="param2FromFlow1">#{flowScope.param2Value}</span></p>
+
+            <p>Has a flow: #{null != facesContext.application.flowHandler.currentFlow}.</p>
+
+            <p><h:commandButton id="answer" value="Answer" action="#{gameFlowBean.checkAnswer}" /></p>
+
+        </h:form>
+    </body>
+</html>
