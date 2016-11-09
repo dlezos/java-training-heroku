@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import javax.validation.constraints.AssertTrue;
 
-import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,8 +45,8 @@ public class MillionaireController {
 	
 	@PutMapping("/game")
 	public Boolean saveGame(@RequestParam Game game){
-		Assert.assertTrue("game cannot be empty", game != null);
-		Assert.assertTrue("Game id cannot be empty", game.getId()!=null);
+		//Assert.assertTrue("game cannot be empty", game != null);
+		//Assert.assertTrue("Game id cannot be empty", game.getId()!=null);
 		if(game == null || game.getId() == null || !currentGames.containsKey(game.getId())){
 			return false;
 		}
