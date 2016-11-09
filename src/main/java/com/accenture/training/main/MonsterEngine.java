@@ -36,7 +36,7 @@ public class MonsterEngine {
 	
     @PostConstruct
     public void initializeEngine(){
-		//loadQuestions();
+		loadQuestions();
     }
 	
 	public String registerUser(String userName, String passWord) {
