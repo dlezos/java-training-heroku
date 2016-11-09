@@ -1,4 +1,4 @@
-package hello;
+package com.accenture.training.main;
 
 public class Greeting {
 
