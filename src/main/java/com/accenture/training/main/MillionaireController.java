@@ -9,6 +9,7 @@ import javax.validation.constraints.AssertTrue;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,12 +33,14 @@ public class MillionaireController {
 	
 	@RequestMapping("/")
     @ResponseBody
+    @CrossOrigin
 	public String index(){
 		return "Hello";
 	}
 	
 	@PostMapping(path = "/game", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
+    @CrossOrigin
 	public Game startGame(@RequestParam Optional<String> playerName){
 		Game game = engine.startGame(playerName.orElse("John Doe"));
 		game.setId(System.currentTimeMillis()%10);
@@ -46,6 +49,7 @@ public class MillionaireController {
 	}
 	
 	@PutMapping("/game")
+    @CrossOrigin
 	public Boolean saveGame(@RequestParam Game game){
 		//Assert.assertTrue("game cannot be empty", game != null);
 		//Assert.assertTrue("Game id cannot be empty", game.getId()!=null);
@@ -57,11 +61,13 @@ public class MillionaireController {
 	}
 	
 	@GetMapping(path = "/game/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin
 	public Game getGame(@PathVariable Long id){
 		return currentGames.get(id);
 	}
 
 	@GetMapping("/game/{id}/current_question")
+    @CrossOrigin
 	public Question getCurrentQuestion(@PathVariable Long id){
 		return currentGames.get(id).getCurrentQuestion();
 	}
@@ -81,6 +87,7 @@ public class MillionaireController {
 	
 	
 	@PostMapping("/game/{id}/action")     //?action={action}")
+    @CrossOrigin
 	public Boolean action(@PathVariable Long id, @RequestParam String action){
 		System.out.println("action(id="+id+", action="+action+")");
 		Game game = currentGames.get(id);
@@ -93,12 +100,14 @@ public class MillionaireController {
 	}
 	
 	@PostMapping("/game/{id}/answer")  //?answer=my_number
+    @CrossOrigin
 	public Boolean checkAnswer(@PathVariable Long id, @RequestParam Long answer){
 		Game game = currentGames.get(id);
 		return engine.giveAnswer(game, answer.intValue());
 	}
 	
 	@GetMapping("/games")
+    @CrossOrigin
 	public List<Game> getAllGames(){
 		ArrayList<Game> result = new ArrayList<Game>();
 		result.addAll(currentGames.values());
